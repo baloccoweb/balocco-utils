@@ -14,13 +14,13 @@
     "balocco",
     "utils"
   ],
-  "author": "baloccobot",
+  "author": "baloccoweb",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/baloccobot/balocco-utils/issues"
   },
   "homepage": "https://github.com/baloccobot/balocco-utils#readme",
   "dependencies": {
-    "user-agents": "^1.0.603"
+    "user-agents": "^1.0.604"
   }
 }
