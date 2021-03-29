@@ -2,9 +2,10 @@
   "name": "balocco-utils",
   "version": "1.0.0",
   "description": "Balocco utilities",
-  "main": "index.mjs",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/index.js"
   },
   "repository": {
     "type": "git",
