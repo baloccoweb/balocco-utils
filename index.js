@@ -1,9 +1,9 @@
-import generalUtils from "./utils/general.js";
-import trackingUtils from "./utils/tracking.js";
+const generalUtils = require("./utils/general");
+const trackingUtils = require("./utils/tracking");
 
 const BaloccoUtils = {
     ...generalUtils,
     ...trackingUtils
 };
 
-export default BaloccoUtils;
+module.exports = BaloccoUtils;

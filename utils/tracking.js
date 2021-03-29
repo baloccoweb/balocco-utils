@@ -1,4 +1,4 @@
-import generalUtils from "./general.js";
+const generalUtils = require("./general");
 
 function getAmazonUrlInfo(search) {
     const url = generalUtils.isValidUrl(search);
@@ -12,6 +12,6 @@ function getAmazonUrlInfo(search) {
     }
 }
 
-export default {
+module.exports = {
     getAmazonUrlInfo
 };

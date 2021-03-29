@@ -1,5 +1,5 @@
-import UserAgent from "user-agents";
-import crypto from "crypto";
+const UserAgent = require("user-agents");
+const crypto = require("crypto");
 
 const sanitazeString = (str) => {
     return str.replace(/[^0-9a-z]/gi, '')
@@ -71,7 +71,7 @@ const getRandomUserAgent = () => {
     return userAgent.toString();
 }
 
-export default {
+module.exports = {
     sanitazeString,
     cleanString,
     getCurrency,
