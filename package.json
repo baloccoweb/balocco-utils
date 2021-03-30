@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/baloccobot/balocco-utils#readme",
   "dependencies": {
-    "user-agents": "^1.0.605"
+    "user-agents": "^1.0.606"
   }
 }
