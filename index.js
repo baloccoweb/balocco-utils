@@ -1,9 +1,11 @@
 const generalUtils = require("./utils/general");
 const trackingUtils = require("./utils/tracking");
+const DataStorage = require('./utils/DataStorage');
 
 const BaloccoUtils = {
     ...generalUtils,
-    ...trackingUtils
+    ...trackingUtils,
+    DataStorage
 };
 
 module.exports = BaloccoUtils;
