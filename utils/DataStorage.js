@@ -9,7 +9,9 @@ const setPath = (path) => {
 const save = (filename, data) => {
     __checkPath();
 
-    fs.writeFile(`${__path}/${filename}.json`, JSON.stringify(data));
+    fs.writeFile(`${__path}/${filename}.json`, JSON.stringify(data), (err) => {
+        if (err) throw err;
+    });
 }
 
 const get = (filename) => {
