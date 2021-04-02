@@ -1,6 +1,6 @@
 const generalUtils = require("./general");
 
-function getAmazonUrlInfo(search) {
+const getAmazonUrlInfo = (search) => {
     const url = generalUtils.isValidUrl(search);
     if (url) {
         return {
@@ -12,6 +12,22 @@ function getAmazonUrlInfo(search) {
     }
 }
 
+const getUnieuroUrlInfo = (search) => {
+    const url = generalUtils.isValidUrl(search);
+    if (url) {
+
+
+
+        return {
+            origin: url.origin,
+            sku: url.pathname.split('/').pop().split('-pid').pop(),
+        };
+    } else {
+        throw "Invalid url";
+    }
+}
+
 module.exports = {
-    getAmazonUrlInfo
+    getAmazonUrlInfo,
+    getUnieuroUrlInfo
 };
