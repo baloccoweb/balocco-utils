@@ -84,6 +84,7 @@ const getRandomUserAgent = () => {
         'Windows NT 10.0; Win64; x64',
         'Windows NT 10.0; WOW64',
         'Windows NT 10.0',
+        'X11; Linux x86_64'
     ];
 
     return `Mozilla/5.0 (${os[Math.floor(Math.random() * os.length)]}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${Math.floor(Math.random() * 5) + 85
