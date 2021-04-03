@@ -1,4 +1,3 @@
-const UserAgent = require("user-agents");
 const crypto = require("crypto");
 
 const sanitazeString = (str) => {
@@ -58,17 +57,37 @@ const stringIncludesAllWords = (str, words = []) => {
     return allWordsIncluded;
 }
 
+
+/**
+ * Gets random chrome User Agent
+ * (Remember to update)
+ * 
+ * @returns string (User Agent)
+ */
 const getRandomUserAgent = () => {
-    const userAgent = new UserAgent([
-        /Chrome\/([8-9][0-9]|\d{3,})/,
-        {
-            deviceCategory: "desktop",
-            platform: 'Win32',
+    const os = [
+        'Macintosh; Intel Mac OS X 11_2_3',
+        'Macintosh; Intel Mac OS X 11_2_0',
+        'Macintosh; Intel Mac OS X 10_15_7',
+        'Macintosh; Intel Mac OS X 10_15_5',
+        'Macintosh; Intel Mac OS X 10_11_6',
+        'Macintosh; Intel Mac OS X 10_6_6',
+        'Macintosh; Intel Mac OS X 10_9_5',
+        'Macintosh; Intel Mac OS X 10_10_5',
+        'Macintosh; Intel Mac OS X 10_7_5',
+        'Macintosh; Intel Mac OS X 10_11_3',
+        'Macintosh; Intel Mac OS X 10_10_3',
+        'Macintosh; Intel Mac OS X 10_6_8',
+        'Macintosh; Intel Mac OS X 10_10_2',
+        'Macintosh; Intel Mac OS X 10_10_3',
+        'Macintosh; Intel Mac OS X 10_11_5',
+        'Windows NT 10.0; Win64; x64',
+        'Windows NT 10.0; WOW64',
+        'Windows NT 10.0',
+    ];
 
-        }
-    ]);
-
-    return userAgent.toString();
+    return `Mozilla/5.0 (${os[Math.floor(Math.random() * os.length)]}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${Math.floor(Math.random() * 5) + 85
+        }.0.${Math.floor(Math.random() * 190) + 4100}.${Math.floor(Math.random() * 50) + 140} Safari/537.36`;
 }
 
 module.exports = {
