@@ -24,10 +24,9 @@ const append = (filename, string, sync = false) => {
     const filepath = `${__path}/${filename}.log`;
     const message = `[${date.toISOString()}] ${string}\r\n`;
     if (sync) {
-        console.log("GG", sync);
-        fs.writeFileSync(filepath, message, { flags: 'a' });
+        fs.appendFileSync(filepath, message);
     } else {
-        fs.writeFile(filepath, message, { flags: 'a' }, (err) => {
+        fs.appendFile(filepath, message, (err) => {
             if (err) throw err;
         });
     }
