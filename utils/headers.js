@@ -18,14 +18,18 @@ const getAmazonDefaultHeaders = (customHeaders = {}) => {
 
 const getAmdDefaultHeaders = (customHeaders = {}) => {
     const locale = getLocale();
+    const firefoxVersion = Math.floor(Math.random() * 5) + 83;
 
     return Object.assign({}, {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.63',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'accept-encoding': 'gzip, deflate, br',
-        'accept-language': `${locale.substr(0, 2)},${locale};q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6`,
-        ...(Math.round(Math.random()) ? { DNT: 1 } : {}),
-        'cookie': `pmuser_country=${locale.substr(0, 2)}`
+        "User-Agent": `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:${firefoxVersion}.0) Gecko/20100101 Firefox/${firefoxVersion}.0`,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8",
+        "Accept-Language": `${locale},${locale.substr(0, 2)};q=0.8,en-US;q=0.5,en;q=0.3`,
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        'Cookie': `pmuser_country=${locale.substr(0, 2)}`,
+        "Upgrade-Insecure-Requests": 1,
+        "Cache-Control": "no-cache",
+        "TE": "Trailers"
     }, customHeaders);
 }
 
