@@ -17,12 +17,12 @@ const setSystemFilename = (filename) => {
     __systemFilename = filename;
 }
 
-const append = (filename, string, sync = false) => {
+const append = (filename, string, prefix, sync = false) => {
     if (!__path) throw "Path is required.";
 
     const date = new Date();
     const filepath = `${__path}/${filename}.log`;
-    const message = `[${date.toISOString()}] ${string}\r\n`;
+    const message = `[${date.toISOString()}][${prefix}] ${string}\r\n`;
     if (sync) {
         fs.appendFileSync(filepath, message);
     } else {
@@ -32,17 +32,17 @@ const append = (filename, string, sync = false) => {
     }
 }
 
-const logSystem = (string, sync = false) => {
+const logSystem = (string, prefix, sync = false) => {
     if (!__systemFilename) throw "System filename is required.";
 
-    append(__systemFilename, string, sync);
+    append(__systemFilename, string, prefix, sync);
 }
 
-const logDebug = (string, sync = false) => {
+const logDebug = (string, prefix, sync = false) => {
     if (!__debugFilename) throw "Debug filename is required.";
 
     if (ConfigHelper.get("enviroment") === "development")
-        append(__debugFilename, string, sync);
+        append(__debugFilename, string, prefix, sync);
 }
 
 const Logger = {
