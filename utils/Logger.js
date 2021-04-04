@@ -1,5 +1,5 @@
-import fs from "fs";
-import { ConfigHelper } from "balocco-utils";
+const fs = require('fs');
+const ConfigHelper = require('./ConfigHelper');
 
 let __path;
 let __debugFilename;
@@ -58,4 +58,4 @@ const Logger = {
     }
 }
 
-export default Logger;
+module.exports = Logger;
