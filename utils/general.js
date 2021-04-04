@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const osLocale = require("os-locale");
 
 const sanitazeString = (str) => {
     return str.replace(/[^0-9a-z]/gi, '')
@@ -57,6 +58,9 @@ const stringIncludesAllWords = (str, words = []) => {
     return allWordsIncluded;
 }
 
+const getLocale = () => {
+    return osLocale.sync();
+}
 
 /**
  * Gets random chrome User Agent
@@ -101,5 +105,6 @@ module.exports = {
     generateId,
     sleep,
     stringIncludesAllWords,
-    getRandomUserAgent
+    getRandomUserAgent,
+    getLocale
 }

@@ -15,9 +15,6 @@ const getAmazonUrlInfo = (search) => {
 const getUnieuroUrlInfo = (search) => {
     const url = generalUtils.isValidUrl(search);
     if (url) {
-
-
-
         return {
             origin: url.origin,
             sku: url.pathname.split('/').pop().split('-pid').pop(),
