@@ -1,9 +1,22 @@
 const fs = require('fs');
+const { fork } = require('child_process');
+
 const ConfigHelper = require('./ConfigHelper');
+
+const LOGGER_ROUTINES_PATH = './utils/processes/LoggerRoutines';
 
 let __path;
 let __debugFilename;
 let __systemFilename;
+let __today;
+
+const __getFilePath = (filename) => {
+    if (__today) {
+        return `${__path}/${filename}_${__today}.log`;
+    }
+
+    return `${__path}/${filename}.log`
+}
 
 const setPath = (path) => {
     __path = path;
@@ -17,11 +30,32 @@ const setSystemFilename = (filename) => {
     __systemFilename = filename;
 }
 
+const startup = () => {
+    return new Promise((resolve, reject) => {
+        const child = fork(LOGGER_ROUTINES_PATH, [__path], { silent: true });
+
+        child.on('error', (err) => {
+            console.log(err);
+        });
+
+        child.on('message', (message) => {
+            if (message.success) {
+                __today = message.data.today;
+                if (message.startup) resolve();
+            } else {
+                if (message.startup) reject(message.error);
+                else throw message.error;
+            }
+        });
+    });
+
+}
+
 const append = (filename, string, prefix, sync = false) => {
     if (!__path) throw "Path is required.";
 
     const date = new Date();
-    const filepath = `${__path}/${filename}.log`;
+    const filepath = __getFilePath(filename);
     const message = `[${date.toISOString()}][${prefix}] ${string}\r\n`;
     if (sync) {
         fs.appendFileSync(filepath, message);
@@ -47,6 +81,7 @@ const logDebug = (string, prefix, sync = false) => {
 
 const Logger = {
     setPath,
+    startup,
     system: {
         setFilename: setSystemFilename,
         log: logSystem
