@@ -2,6 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const __path = process.argv[2];
+const FILES_WHITELIST = [
+    ".gitignore"
+];
 
 const formatDate = (date) => {
     let d = new Date(date),
@@ -40,7 +43,9 @@ const execute = (startup) => {
     let success, error, data;
     try {
         const files = fs.readdirSync(__path);
-        files.forEach((file) => {
+        files.filter((file) => {
+            return !FILES_WHITELIST.includes(file);
+        }).forEach((file) => {
             const filepath = path.join(__path, file);
             const stat = fs.statSync(filepath);
             const fileDate = formatDate(new Date(stat.birthtime));
