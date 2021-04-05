@@ -3,7 +3,7 @@ const { fork } = require('child_process');
 
 const ConfigHelper = require('./ConfigHelper');
 
-const LOGGER_ROUTINES_PATH = './utils/processes/LoggerRoutines';
+const LOGGER_ROUTINES_PATH = `${__dirname}/processes/LoggerRoutines`;
 
 let __path;
 let __debugFilename;
