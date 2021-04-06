@@ -1,24 +1,46 @@
 const fs = require('fs');
+const os = require('os');
 
-let __path;
+const HOME_DIR = os.homedir();
+const DATA_PATH = 'storage/data';
 
-const setPath = (path) => {
-    __path = path;
+let __folder;
+
+const __checkFolder = () => {
+    if (!__folder) {
+        throw "Run startup first.";
+    }
+}
+
+const getDataFolder = () => {
+    __checkFolder();
+
+    return `${HOME_DIR}/${__folder}/${DATA_PATH}`;
+}
+
+const startup = (folder) => {
+    if (!folder) throw "Pass valid folder name";
+
+    __folder = folder;
+
+    if (!fs.existsSync(`${getDataFolder()}`)) {
+        fs.mkdirSync(`${getDataFolder()}`, { recursive: true });
+    }
 }
 
 const save = (filename, data) => {
-    __checkPath();
+    __checkFolder();
 
-    fs.writeFile(`${__path}/${filename}.json`, JSON.stringify(data), (err) => {
+    fs.writeFile(`${getDataFolder()}/${filename}.json`, JSON.stringify(data), (err) => {
         if (err) throw err;
     });
 }
 
 const get = (filename) => {
-    __checkPath();
+    __checkFolder();
 
     try {
-        const rawdata = fs.readFileSync(`${__path}/${filename}.json`);
+        const rawdata = fs.readFileSync(`${getDataFolder()}/${filename}.json`);
 
         return JSON.parse(rawdata);
     } catch (e) {
@@ -26,14 +48,9 @@ const get = (filename) => {
     }
 }
 
-const __checkPath = () => {
-    if (!__path) {
-        throw "Path is required.";
-    }
-}
-
 const DataStorage = {
-    setPath,
+    getDataFolder,
+    startup,
     save,
     get
 }
