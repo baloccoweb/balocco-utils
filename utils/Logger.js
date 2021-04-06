@@ -1,38 +1,57 @@
 const fs = require('fs');
 const { fork } = require('child_process');
+const os = require('os');
 
 const ConfigHelper = require('./ConfigHelper');
 
 const LOGGER_ROUTINES_PATH = `${__dirname}/processes/LoggerRoutines`;
+const HOME_DIR = os.homedir();
 
-let __path;
-let __debugFilename;
-let __systemFilename;
+const LOGS_PATH = 'storage/logs';
+const DEBUG_FILENAME = 'debug';
+const SYSTEM_FILENAME = 'system';
+
 let __today;
+let __folder;
 
 const __getFilePath = (filename) => {
     if (__today) {
-        return `${__path}/${filename}_${__today}.log`;
+        return `${getLogsFolder()}/${filename}_${__today}.log`;
     }
 
-    return `${__path}/${filename}.log`
+    return `${getLogsFolder()}/${filename}.log`;
 }
 
-const setPath = (path) => {
-    __path = path;
+const __append = (filename, string, prefix, sync = false) => {
+    const date = new Date();
+    const filepath = __getFilePath(filename);
+    const message = `[${date.toISOString()}][${prefix}] ${string}\r\n`;
+    if (sync) {
+        fs.appendFileSync(filepath, message);
+    } else {
+        fs.appendFile(filepath, message, (err) => {
+            if (err) throw err;
+        });
+    }
 }
 
-const setDebugFilename = (filename) => {
-    __debugFilename = filename;
+const getLogsFolder = () => {
+    if (!__folder) throw "Run startup first";
+
+    return `${HOME_DIR}/${__folder}/${LOGS_PATH}`;
 }
 
-const setSystemFilename = (filename) => {
-    __systemFilename = filename;
-}
+const startup = (folder) => {
+    if (!folder) throw "Pass valid folder name";
 
-const startup = () => {
+    __folder = folder;
+
     return new Promise((resolve, reject) => {
-        const child = fork(LOGGER_ROUTINES_PATH, [__path], { silent: true });
+        if (!fs.existsSync(`${getLogsFolder()}`)) {
+            fs.mkdirSync(`${getLogsFolder()}`, { recursive: true });
+        }
+
+        const child = fork(LOGGER_ROUTINES_PATH, [`${getLogsFolder()}`], { silent: true });
 
         child.on('error', (err) => {
             console.log(err);
@@ -51,43 +70,26 @@ const startup = () => {
 
 }
 
-const append = (filename, string, prefix, sync = false) => {
-    if (!__path) throw "Path is required.";
-
-    const date = new Date();
-    const filepath = __getFilePath(filename);
-    const message = `[${date.toISOString()}][${prefix}] ${string}\r\n`;
-    if (sync) {
-        fs.appendFileSync(filepath, message);
-    } else {
-        fs.appendFile(filepath, message, (err) => {
-            if (err) throw err;
-        });
-    }
-}
-
 const logSystem = (string, prefix, sync = false) => {
-    if (!__systemFilename) throw "System filename is required.";
+    if (!__folder) throw "Run startup first";
 
-    append(__systemFilename, string, prefix, sync);
+    __append(SYSTEM_FILENAME, string, prefix, sync);
 }
 
 const logDebug = (string, prefix, sync = false) => {
-    if (!__debugFilename) throw "Debug filename is required.";
+    if (!__folder) throw "Run startup first";
 
     if (ConfigHelper.get("enviroment") === "development")
-        append(__debugFilename, string, prefix, sync);
+        __append(DEBUG_FILENAME, string, prefix, sync);
 }
 
 const Logger = {
-    setPath,
     startup,
+    getLogsFolder,
     system: {
-        setFilename: setSystemFilename,
         log: logSystem
     },
     debug: {
-        setFilename: setDebugFilename,
         log: logDebug
     }
 }
