@@ -1,7 +1,10 @@
 const BaloccoUtils = require("../index");
 
-BaloccoUtils.DataStorage.startup(".utils");
-BaloccoUtils.DataStorage.save("test", { ok: true });
+BaloccoUtils.AppStorage.startup(".utils");
+BaloccoUtils.AppStorage.writeContent("pippo/aaa.txt", "gigi");
+console.log(BaloccoUtils.AppStorage.getContent("pippo/aaa.txt"))
+//BaloccoUtils.DataStorage.startup(".utils");
+//BaloccoUtils.DataStorage.save("test", { ok: true });
 //BaloccoUtils.Logger.startup(".utils").then(response => {
 //    console.log(BaloccoUtils.Logger.getLogsFolder());
 //    BaloccoUtils.Logger.system.log('okkkk');
