@@ -1,10 +1,9 @@
 const fs = require('fs');
-const { fork } = require('child_process');
 const os = require('os');
 
 const ConfigHelper = require('./ConfigHelper');
+const LoggerRoutines = require('./processes/LoggerRoutines');
 
-const LOGGER_ROUTINES_PATH = `${__dirname}/processes/LoggerRoutines`;
 const HOME_DIR = os.homedir();
 
 const LOGS_PATH = 'storage/logs';
@@ -46,26 +45,12 @@ const startup = (folder) => {
 
     __folder = folder;
 
-    return new Promise((resolve, reject) => {
-        if (!fs.existsSync(`${getLogsFolder()}`)) {
-            fs.mkdirSync(`${getLogsFolder()}`, { recursive: true });
-        }
+    if (!fs.existsSync(`${getLogsFolder()}`)) {
+        fs.mkdirSync(`${getLogsFolder()}`, { recursive: true });
+    }
 
-        const child = fork(LOGGER_ROUTINES_PATH, [`${getLogsFolder()}`], { silent: true });
-
-        child.on('error', (err) => {
-            console.log(err);
-        });
-
-        child.on('message', (message) => {
-            if (message.success) {
-                __today = message.data.today;
-                if (message.startup) resolve();
-            } else {
-                if (message.startup) reject(message.error);
-                else throw message.error;
-            }
-        });
+    LoggerRoutines.execute(getLogsFolder(), (today) => {
+        __today = today;
     });
 
 }

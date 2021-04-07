@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const __path = process.argv[2];
 const FILES_WHITELIST = [
     ".gitignore"
 ];
@@ -38,43 +37,37 @@ const msToMidnight = () => {
     return night.getTime() - now.getTime();
 }
 
-const execute = (startup) => {
+const execute = (dirpath, callback = () => { }) => {
     const today = formatDate(new Date);
-    let success, error, data;
-    try {
-        const files = fs.readdirSync(__path);
+    fs.readdir(dirpath, (err, files) => {
+        if (err) throw err;
+
         files.filter((file) => {
             return !FILES_WHITELIST.includes(file);
         }).forEach((file) => {
-            const filepath = path.join(__path, file);
-            const stat = fs.statSync(filepath);
-            const fileDate = formatDate(new Date(stat.birthtime));
+            const filepath = path.join(dirpath, file);
+            fs.stat(filepath, (err, stat) => {
+                if (err) throw err;
 
-            if (diffDays(new Date(fileDate), new Date(today)) > 7) {
-                fs.unlinkSync(filepath);
-            }
+                const fileDate = formatDate(new Date(stat.birthtime));
+                if (diffDays(new Date(fileDate), new Date(today)) > 7) {
+                    fs.unlink(filepath, (err) => {
+                        if (err) throw err;
+                    });
+                }
+            });
         });
+    });
 
-        success = true;
-        error = null;
-        data = {
-            today
-        };
+    setTimeout(() => {
+        execute(dirpath, callback);
+    }, msToMidnight());
 
-        setTimeout(() => {
-            execute(false);
-        }, msToMidnight());
-    } catch (e) {
-        success = false;
-        error = e;
-    } finally {
-        process.send({
-            success,
-            error,
-            data,
-            startup
-        });
-    }
+    callback(today);
 }
 
-execute(true);
+const LoggerRoutines = {
+    execute
+}
+
+module.exports = LoggerRoutines;
