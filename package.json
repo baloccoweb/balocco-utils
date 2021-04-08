@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/baloccobot/balocco-utils#readme",
   "dependencies": {
-    "config": "^3.3.6",
-    "os-locale": "^5.0.0"
+    "config": "^3.3.6"
   }
 }

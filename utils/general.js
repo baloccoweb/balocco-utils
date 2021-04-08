@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const osLocale = require("os-locale");
+const ConfigHelper = require("./ConfigHelper");
 
 const sanitazeString = (str) => {
     return str.replace(/[^0-9a-z]/gi, '')
@@ -59,7 +59,7 @@ const stringIncludesAllWords = (str, words = []) => {
 }
 
 const getLocale = () => {
-    return osLocale.sync();
+    return ConfigHelper.get("locale") ? ConfigHelper.get("locale") : "it-IT";
 }
 
 /**
