@@ -62,6 +62,10 @@ const getLocale = () => {
     return ConfigHelper.get("locale") ? ConfigHelper.get("locale") : "it-IT";
 }
 
+const getAppVersion = () => {
+    return process.env.npm_package_version;
+}
+
 /**
  * Gets random chrome User Agent
  * (Remember to update)
@@ -106,5 +110,6 @@ module.exports = {
     sleep,
     stringIncludesAllWords,
     getRandomUserAgent,
-    getLocale
+    getLocale,
+    getAppVersion
 }
