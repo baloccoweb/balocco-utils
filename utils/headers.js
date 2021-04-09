@@ -21,15 +21,13 @@ const getAmdDefaultHeaders = (customHeaders = {}) => {
     const firefoxVersion = Math.floor(Math.random() * 5) + 83;
 
     return Object.assign({}, {
-        "User-Agent": `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:${firefoxVersion}.0) Gecko/20100101 Firefox/${firefoxVersion}.0`,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8",
-        "Accept-Language": `${locale},${locale.substr(0, 2)};q=0.8,en-US;q=0.5,en;q=0.3`,
-        "Accept-Encoding": "gzip, deflate, br",
-        "Connection": "keep-alive",
-        'Cookie': `pmuser_country=${locale.substr(0, 2)}`,
-        "Upgrade-Insecure-Requests": 1,
-        "Cache-Control": "no-cache",
-        "TE": "Trailers"
+        "user-agent": `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:${firefoxVersion}.0) Gecko/20100101 Firefox/${firefoxVersion}.0`,
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8",
+        "accept-language": `${locale},${locale.substr(0, 2)};q=0.8,en-US;q=0.5,en;q=0.3`,
+        "accept-encoding": "gzip, deflate, br",
+        'cookie': `pmuser_country=${locale.substr(0, 2)}`,
+        "upgrade-insecure-requests": 1,
+        "cache-control": "no-cache",
     }, customHeaders);
 }
 
