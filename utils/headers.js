@@ -29,6 +29,7 @@ const getAmdDefaultHeaders = (customHeaders = {}) => {
         'cookie': `pmuser_country=${locale.substr(0, 2)}`,
         "upgrade-insecure-requests": 1,
         "cache-control": "no-cache",
+        "pragma": "no-cache",
     }, customHeaders);
 }
 
