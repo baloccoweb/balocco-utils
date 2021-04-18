@@ -9,6 +9,7 @@ const HOME_DIR = os.homedir();
 const LOGS_PATH = 'storage/logs';
 const DEBUG_FILENAME = 'debug';
 const SYSTEM_FILENAME = 'system';
+const PROXY_FILENAME = 'proxy';
 
 let __today;
 let __folder;
@@ -68,6 +69,12 @@ const logDebug = (string, prefix, sync = false) => {
         __append(DEBUG_FILENAME, string, prefix, sync);
 }
 
+const logPoxy = (string, prefix, sync = false) => {
+    if (!__folder) throw "Run startup first";
+
+    __append(PROXY_FILENAME, string, prefix, sync);
+}
+
 const Logger = {
     startup,
     getLogsFolder,
@@ -76,6 +83,9 @@ const Logger = {
     },
     debug: {
         log: logDebug
+    },
+    proxy: {
+        log: logPoxy
     }
 }
 
