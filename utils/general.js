@@ -99,6 +99,10 @@ const getRandomUserAgent = () => {
         }.0.${Math.floor(Math.random() * 190) + 4100}.${Math.floor(Math.random() * 50) + 140} Safari/537.36`;
 }
 
+const randomIntFromInterval = (min, max) => { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 module.exports = {
     sanitazeString,
     cleanString,
@@ -111,5 +115,6 @@ module.exports = {
     stringIncludesAllWords,
     getRandomUserAgent,
     getLocale,
-    getAppVersion
+    getAppVersion,
+    randomIntFromInterval
 }
