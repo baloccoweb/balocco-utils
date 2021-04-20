@@ -11,7 +11,12 @@ const ConfigHelper = new (class {
 
     get(key) {
         if (this._overrides[key]) return this._overrides[key];
-        return config.get(key);
+
+        try {
+            return config.get(key);
+        } catch (e) {
+            return null;
+        }
     }
 })();
 
