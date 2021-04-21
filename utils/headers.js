@@ -17,26 +17,26 @@ const getAmazonDefaultHeaders = (customHeaders = []) => {
     ].concat(customHeaders);
 }
 
-const getAmdDefaultHeaders = (customHeaders = {}) => {
+const getAmdDefaultHeaders = (customHeaders = []) => {
     const locale = getLocale();
     const firefoxVersion = Math.floor(Math.random() * 5) + 83;
 
-    return Object.assign({}, {
-        "user-agent": `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:${firefoxVersion}.0) Gecko/20100101 Firefox/${firefoxVersion}.0`,
-        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8",
-        "accept-language": `${locale},${locale.substr(0, 2)};q=0.8,en-US;q=0.5,en;q=0.3`,
-        "accept-encoding": "gzip, deflate, br",
-        'cookie': `pmuser_country=${locale.substr(0, 2)}`,
-        "upgrade-insecure-requests": 1,
-        "cache-control": "no-cache",
-        "pragma": "no-cache",
-    }, customHeaders);
+    return [
+        `user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:${firefoxVersion}.0) Gecko/20100101 Firefox/${firefoxVersion}.0`,
+        "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8",
+        `accept-language: ${locale},${locale.substr(0, 2)};q=0.8,en-US;q=0.5,en;q=0.3`,
+        "accept-encoding: gzip, deflate, br",
+        `cookie: pmuser_country=${locale.substr(0, 2)}`,
+        "upgrade-insecure-requests: 1",
+        "cache-control: no-cache",
+        "pragma: no-cache",
+    ].concat(customHeaders);
 }
 
-const getUnieuroDefaultHeaders = (customHeaders = {}) => {
-    return Object.assign({}, {
-        'user-agent': getRandomUserAgent(),
-    }, customHeaders);
+const getUnieuroDefaultHeaders = (customHeaders = []) => {
+    return [
+        `user-agent: ${getRandomUserAgent()}`,
+    ].concat(customHeaders);
 }
 
 module.exports = {
