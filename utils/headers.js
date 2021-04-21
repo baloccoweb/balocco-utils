@@ -1,20 +1,20 @@
 const { getRandomUserAgent, getLocale } = require("./general");
 
-const getAmazonDefaultHeaders = (customHeaders = {}) => {
+const getAmazonDefaultHeaders = (customHeaders = []) => {
     const locale = getLocale();
 
-    return Object.assign({}, {
-        'user-agent': getRandomUserAgent(),
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'accept-encoding': 'gzip, deflate, br',
-        'accept-language': `${locale.substr(0, 2)},${locale};q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6`,
-        'cache-control': 'no-cache',
-        'pragma': 'no-cache',
-        ...(Math.round(Math.random()) ? { downlink: Math.floor(Math.random() * 30) + 10 } : {}),
-        ...(Math.round(Math.random()) ? { rtt: Math.floor(Math.random() * 100) + 50 } : {}),
-        ...(Math.round(Math.random()) ? { ect: '4g' } : {}),
-        ...(Math.round(Math.random()) ? { DNT: 1 } : {}),
-    }, customHeaders);
+    return [
+        `user-agent: ${getRandomUserAgent()}`,
+        'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'accept-encoding: gzip, deflate, br',
+        `accept-language: ${locale.substr(0, 2)},${locale};q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6`,
+        'cache-control: no-cache',
+        'pragma: no-cache',
+        ...(Math.round(Math.random()) ? [`downlink: ${Math.floor(Math.random() * 30) + 10}`] : []),
+        ...(Math.round(Math.random()) ? [`rtt: ${Math.floor(Math.random() * 100) + 50}`] : []),
+        ...(Math.round(Math.random()) ? ['ect: 4g'] : []),
+        ...(Math.round(Math.random()) ? ['DNT: 1'] : []),
+    ].concat(customHeaders);
 }
 
 const getAmdDefaultHeaders = (customHeaders = {}) => {
