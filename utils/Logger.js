@@ -6,7 +6,7 @@ const LoggerRoutines = require('./processes/LoggerRoutines');
 
 const HOME_DIR = os.homedir();
 
-const LOGS_PATH = 'storage/logs';
+const LOGS_PATH = 'logs';
 const DEBUG_FILENAME = 'debug';
 const SYSTEM_FILENAME = 'system';
 const PROXY_FILENAME = 'proxy';

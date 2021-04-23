@@ -3,7 +3,7 @@ const os = require('os');
 const path = require('path');
 
 const HOME_DIR = os.homedir();
-const APP_PATH = 'storage/app';
+const APP_PATH = 'app';
 
 let __folder;
 

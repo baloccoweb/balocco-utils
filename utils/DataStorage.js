@@ -2,7 +2,7 @@ const fs = require('fs');
 const os = require('os');
 
 const HOME_DIR = os.homedir();
-const DATA_PATH = 'storage/data';
+const DATA_PATH = 'data';
 
 let __folder;
 
