@@ -5,7 +5,7 @@ const getAmazonDefaultHeaders = (customHeaders = []) => {
     const locale = getLocale();
 
     return [
-        `user-agent: ${randomUserAgent()}`,
+        `user-agent: ${randomUserAgent({ browser: 'chrome' })}`,
         'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
         'accept-encoding: gzip, deflate, br',
         `accept-language: ${locale.substr(0, 2)},${locale};q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6`,
