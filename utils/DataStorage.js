@@ -68,12 +68,28 @@ const mkdir = async (folder) => {
     });
 }
 
+const rm = async (folder) => {
+    return new Promise((resolve, reject) => {
+        fs.rm(`${getDataFolder()}/${folder}`, {
+            recursive: true,
+            force: true
+        }, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        })
+    });
+}
+
 const DataStorage = {
     getDataFolder,
     startup,
     saveJson,
     getJson,
-    mkdir
+    mkdir,
+    rm
 }
 
 module.exports = DataStorage;
