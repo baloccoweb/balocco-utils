@@ -28,15 +28,21 @@ const startup = (folder) => {
     }
 }
 
-const save = (filename, data) => {
-    __checkFolder();
+const saveJson = (filename, data) => {
+    return new Promise((resolve, reject) => {
+        __checkFolder();
 
-    fs.writeFile(`${getDataFolder()}/${filename}.json`, JSON.stringify(data), (err) => {
-        if (err) throw err;
+        fs.writeFile(`${getDataFolder()}/${filename}.json`, JSON.stringify(data), (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
     });
 }
 
-const get = (filename) => {
+const getJson = (filename) => {
     __checkFolder();
 
     try {
@@ -48,11 +54,26 @@ const get = (filename) => {
     }
 }
 
+const mkdir = async (folder) => {
+    return new Promise((resolve, reject) => {
+        fs.mkdir(`${getDataFolder()}/${folder}`, {
+            recursive: true
+        }, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        })
+    });
+}
+
 const DataStorage = {
     getDataFolder,
     startup,
-    save,
-    get
+    saveJson,
+    getJson,
+    mkdir
 }
 
 module.exports = DataStorage;
