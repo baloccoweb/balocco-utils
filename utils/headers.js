@@ -1,17 +1,5 @@
-const { getLocale, randomChoice } = require("./general");
+const { getLocale } = require("./general");
 const { randomUserAgent } = require("./userAgents");
-
-const getAmdDefaultHeaders = (customHeaders = []) => {
-    const locale = getLocale();
-
-    return [
-        `user-agent: ${randomUserAgent({ browser: 'firefox' })}`,
-        "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8",
-        "upgrade-insecure-requests: 1",
-        "cache-control: no-cache",
-        "pragma: no-cache",
-    ].concat(customHeaders);
-}
 
 const getUnieuroDefaultHeaders = (customHeaders = []) => {
     const locale = getLocale();
@@ -28,6 +16,5 @@ const getUnieuroDefaultHeaders = (customHeaders = []) => {
 }
 
 module.exports = {
-    getAmdDefaultHeaders,
     getUnieuroDefaultHeaders
 };
