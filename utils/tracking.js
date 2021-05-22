@@ -24,7 +24,23 @@ const getUnieuroUrlInfo = (search) => {
     }
 }
 
+const getMediaworldUrlInfo = (search) => {
+    const url = generalUtils.isValidUrl(search);
+    if (url) {
+        const splittedPathname = url.pathname.split('/');
+        const partNumber = splittedPathname.find((part) => part.startsWith("p-"));
+
+        return {
+            origin: url.origin,
+            partNumber
+        };
+    } else {
+        throw "Invalid url";
+    }
+}
+
 module.exports = {
     getAmazonUrlInfo,
-    getUnieuroUrlInfo
+    getUnieuroUrlInfo,
+    getMediaworldUrlInfo
 };
