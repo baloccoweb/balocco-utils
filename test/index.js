@@ -1,3 +1,3 @@
 const BaloccoUtils = require("../index");
 
-console.log( BaloccoUtils.getMediaworldUrlInfo('https://www.mediaworld.it/product/p-145164/asus-geforce-rtx-3070-8gb'));
+console.log( BaloccoUtils.getNexthsUrlInfo('https://www.nexths.it/Products/details/sku/ZT-A30700H-10P'));

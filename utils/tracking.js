@@ -39,8 +39,21 @@ const getMediaworldUrlInfo = (search) => {
     }
 }
 
+const getNexthsUrlInfo = (search) => {
+    const url = generalUtils.isValidUrl(search);
+    if (url) {
+        return {
+            origin: url.origin,
+            sku: url.pathname.split('/').pop()
+        };
+    } else {
+        throw "Invalid url";
+    }
+}
+
 module.exports = {
     getAmazonUrlInfo,
     getUnieuroUrlInfo,
-    getMediaworldUrlInfo
+    getMediaworldUrlInfo,
+    getNexthsUrlInfo
 };
