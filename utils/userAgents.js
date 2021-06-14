@@ -18,7 +18,7 @@ const CHROME_OS = [
     'Macintosh; Intel Mac OS X 10_11_5',
     'Windows NT 10.0; Win64; x64',
     'Windows NT 10.0; WOW64',
-    'Windows NT 10.0',
+    'Windows NT 10.0; Win32; x86',
     'X11; Linux x86_64'
 ];
 
