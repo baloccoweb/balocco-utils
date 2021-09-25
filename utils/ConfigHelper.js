@@ -18,6 +18,14 @@ const ConfigHelper = new (class {
             return null;
         }
     }
+
+    isDev() {
+        return this.get("enviroment") === "development";
+    }
+
+    isProd() {
+        return this.get("enviroment") === "production";
+    }
 })();
 
 module.exports = ConfigHelper;
