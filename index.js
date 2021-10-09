@@ -1,5 +1,6 @@
 const generalUtils = require("./utils/general");
 const trackingUtils = require("./utils/tracking");
+const HeadersHelper = require("./utils/HeadersHelper");
 const userAgentsUtils = require("./utils/userAgents");
 const DataStorage = require('./utils/DataStorage');
 const AppStorage = require('./utils/AppStorage');
@@ -13,7 +14,8 @@ const BaloccoUtils = {
     DataStorage,
     AppStorage,
     ConfigHelper,
-    Logger
+    Logger,
+    HeadersHelper
 };
 
 module.exports = BaloccoUtils;
