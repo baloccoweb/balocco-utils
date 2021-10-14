@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/baloccobot/balocco-utils#readme",
   "dependencies": {
-    "config": "^3.3.6"
+    "config": "^3.3.6",
+    "got": "^11.8.2",
+    "http-proxy-agent": "^5.0.0",
+    "https-proxy-agent": "^5.0.0",
+    "socks-proxy-agent": "^6.1.0"
   }
 }

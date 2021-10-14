@@ -5,6 +5,8 @@ const userAgentsUtils = require("./utils/userAgents");
 const DataStorage = require('./utils/DataStorage');
 const AppStorage = require('./utils/AppStorage');
 const ConfigHelper = require('./utils/ConfigHelper');
+const BaloccoHttp = require('./utils/BaloccoHttp');
+const GotHelper = require('./utils/GotHelper');
 const Logger = require('./utils/Logger');
 
 const BaloccoUtils = {
@@ -15,7 +17,9 @@ const BaloccoUtils = {
     AppStorage,
     ConfigHelper,
     Logger,
-    HeadersHelper
+    HeadersHelper,
+    BaloccoHttp,
+    GotHelper
 };
 
 module.exports = BaloccoUtils;
