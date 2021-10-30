@@ -32,28 +32,29 @@ const OS = [
 ];
 
 const randomUA = () => {
-    let exampleUA = CHROME_HEADERS['user-agent'];
+    let ua = CHROME_HEADERS['user-agent'];
     const chomeVersion = REAL_CHROME_VERSIONS[randomIntFromInterval(0, REAL_CHROME_VERSIONS.length - 1)];
     const osVersion = OS[randomIntFromInterval(0, OS.length - 1)];
 
-    exampleUA = CHROME_HEADERS['user-agent'].replaceAll("${CHROME_BUILD}", chomeVersion[1])
+    ua = CHROME_HEADERS['user-agent'].replaceAll("${CHROME_BUILD}", chomeVersion[1])
         .replaceAll("${OS}", osVersion);
 
-    return exampleUA;
+    return { ua, version: chomeVersion[0] };
 };
 
 const getRealChrome = (locale) => {
     const newHeaders = { ...CHROME_HEADERS };
-    const chomeVersion = REAL_CHROME_VERSIONS[randomIntFromInterval(0, REAL_CHROME_VERSIONS.length - 1)];
 
     newHeaders["accept-language"] = newHeaders["accept-language"]
         .replace("${LOCALE_FULL}", locale + "-" + locale.toUpperCase())
         .replace("${LOCALE}", locale);
 
-    newHeaders["sec-ch-ua"] = newHeaders["sec-ch-ua"]
-        .replaceAll("${CHROME_VERSION}", chomeVersion[0]);
+    const { ua, version } = randomUA();
 
-    newHeaders["user-agent"] = randomUA();
+    newHeaders["sec-ch-ua"] = newHeaders["sec-ch-ua"]
+        .replaceAll("${CHROME_VERSION}", version);
+
+    newHeaders["user-agent"] = ua;
 
     return newHeaders;
 }
