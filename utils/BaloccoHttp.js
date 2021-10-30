@@ -10,6 +10,7 @@ const req = async (url, {
     responseType = "text",
     searchParams = undefined,
     json = undefined,
+    body = undefined,
     timeout = 5000
 }) => {
     const options = {
@@ -19,6 +20,7 @@ const req = async (url, {
         responseType,
         searchParams,
         json,
+        body
     };
 
     if (headers) options.headers = headers;
