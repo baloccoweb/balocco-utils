@@ -1,3 +1,5 @@
-const BaloccoUtils = require("../index");
+const { HeadersHelper } = require("../index");
 
-console.log( BaloccoUtils.getNexthsUrlInfo('https://www.nexths.it/Products/details/sku/ZT-A30700H-10P'));
+setInterval(() => {
+    console.log(HeadersHelper.randomUA());
+}, 1000);
