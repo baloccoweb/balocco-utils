@@ -1,4 +1,4 @@
-const got = require('got');
+const { got } = require('got-cjs');
 const GotHelper = require('./GotHelper');
 
 const req = async (url, {
@@ -14,10 +14,6 @@ const req = async (url, {
     timeout = 5000,
     retry = undefined
 }) => {
-    if (retry !== undefined && Number.isInteger(retry)) {
-        retry = { limit: retry };
-    }
-
     const options = {
         ...GotHelper.getDefaultOptions(locale, agent),
         method,
@@ -25,11 +21,13 @@ const req = async (url, {
         responseType,
         searchParams,
         json,
-        body,
-        retry
+        body
     };
 
     if (headers) options.headers = headers;
+    if (retry !== undefined && Number.isInteger(retry)) {
+        options.retry = { limit: retry };
+    }
 
     const request = got(url, options);
 
