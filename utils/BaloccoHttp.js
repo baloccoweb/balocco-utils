@@ -11,8 +11,13 @@ const req = async (url, {
     searchParams = undefined,
     json = undefined,
     body = undefined,
-    timeout = 5000
+    timeout = 5000,
+    retry = undefined
 }) => {
+    if (retry !== undefined && Number.isInteger(retry)) {
+        retry = { limit: retry };
+    }
+
     const options = {
         ...GotHelper.getDefaultOptions(locale, agent),
         method,
@@ -20,7 +25,8 @@ const req = async (url, {
         responseType,
         searchParams,
         json,
-        body
+        body,
+        retry
     };
 
     if (headers) options.headers = headers;
