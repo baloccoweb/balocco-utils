@@ -1,5 +1,4 @@
 const HeadersHelper = require("./HeadersHelper");
-const HttpProxyAgent = require("http-proxy-agent");
 const HttpsProxyAgent = require("https-proxy-agent");
 const SocksProxyAgent = require("socks-proxy-agent");
 
@@ -21,7 +20,7 @@ const GotHelper = {
             };
         } else if (address.includes("http")) {
             return {
-                http: new HttpProxyAgent(address),
+                http: new HttpsProxyAgent(address),
                 https: new HttpsProxyAgent(address)
             };
         }
