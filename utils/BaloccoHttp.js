@@ -12,7 +12,8 @@ const req = async (url, {
     json = undefined,
     body = undefined,
     timeout = 5000,
-    retry = undefined
+    retry = undefined,
+    followRedirect = false
 }) => {
     const options = {
         ...GotHelper.getDefaultOptions(locale, agent),
@@ -21,7 +22,8 @@ const req = async (url, {
         responseType,
         searchParams,
         json,
-        body
+        body,
+        followRedirect
     };
 
     if (headers) options.headers = headers;
