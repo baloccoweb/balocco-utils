@@ -74,6 +74,20 @@ const randomIntFromInterval = (min, max) => { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+const getRandom = (arr, n) => {
+    let result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        let x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+}
+
 module.exports = {
     sanitazeString,
     cleanString,
@@ -87,5 +101,6 @@ module.exports = {
     getLocale,
     getAppVersion,
     randomChoice,
-    randomIntFromInterval
+    randomIntFromInterval,
+    getRandom
 }

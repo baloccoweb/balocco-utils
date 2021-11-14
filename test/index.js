@@ -1,9 +1,4 @@
-const { HeadersHelper, BaloccoHttp, GotHelper } = require("../index");
+const { getRandom } = require("../index");
 
-setTimeout(async () => {
-    console.log(HeadersHelper.randomUA());
-    console.log((await BaloccoHttp.req("https://api.ipify.org?format=json", {
-        retry: 0,
-        //agent: GotHelper.getAgent("socks4://192.141.236.10:5678")
-    })).body);
-}, 1000);
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+console.log(getRandom(arr, 3));
