@@ -77,6 +77,14 @@ const getRealChrome = (locale) => {
     return newHeaders;
 }
 
+const FIREFOX_TYPES = {
+    NAVIGATE: 1,
+    NAVIGATE_CROSS: 2,
+    XHR_GET_HTML: 3,
+    XHR_POST_JSON: 4,
+    XHR_POST_JSON_FORM: 5
+};
+
 const REAL_FIREFOX_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0",
@@ -86,26 +94,61 @@ const REAL_FIREFOX_AGENTS = [
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:94.0) Gecko/20100101 Firefox/94.0"
 ];
 
-const getRealFirefox = (locale) => {
-    return {
-        'User-Agent': REAL_FIREFOX_AGENTS[randomIntFromInterval(0, REAL_FIREFOX_AGENTS.length - 1)],
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-        'Accept-Language': `${locale}-${locale.toUpperCase()},${locale};q=0.8,en;q=0.5,en-US;q=0.3`,
-        'DNT': '1',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Cache-Control': 'max-age=0',
-        'TE': 'trailers',
-    };
+const defaultFirefoxXhrLowerHeaders = {
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Pragma': 'no-cache',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-origin',
+    'Cache-Control': 'no-cache',
+    'TE': 'trailers',
+};
+
+const getRealFirefox = (locale, type = FIREFOX_TYPES.NAVIGATE) => {
+    const userAgent = REAL_FIREFOX_AGENTS[randomIntFromInterval(0, REAL_FIREFOX_AGENTS.length - 1)];
+    const acceptLanguage = `${locale}-${locale.toUpperCase()},${locale};q=0.8,en;q=0.5,en-US;q=0.3`;
+
+    switch (type) {
+        case FIREFOX_TYPES.XHR_GET_HTML:
+            return {
+                'User-Agent': userAgent,
+                'Accept': 'text/html,*/*',
+                'Accept-Language': acceptLanguage,
+                ...defaultFirefoxXhrLowerHeaders
+            };
+        case FIREFOX_TYPES.XHR_POST_JSON:
+        case FIREFOX_TYPES.XHR_POST_JSON_FORM:
+            return {
+                'User-Agent': userAgent,
+                'Accept': 'application/json, text/plain, */*',
+                'Accept-Language': acceptLanguage,
+                'Content-Type': type === FIREFOX_TYPES.XHR_POST_JSON_FORM ? 'application/x-www-form-urlencoded; charset=UTF-8' : 'application/json; charset=utf-8',
+                ...defaultFirefoxXhrLowerHeaders
+            };
+        default:
+            return {
+                'User-Agent': userAgent,
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                'Accept-Language': acceptLanguage,
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Pragma': 'no-cache',
+                'DNT': '1',
+                'Upgrade-Insecure-Requests': '1',
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': type === FIREFOX_TYPES.NAVIGATE_CROSS ? 'same-origin' : 'none',
+                'Sec-Fetch-User': '?1',
+                'Cache-Control': 'no-cache',
+                'TE': 'trailers',
+            };
+    }
 }
 
 const HeadersHelper = {
     getRealChrome,
     getRealFirefox,
-    randomUA
+    randomUA,
+    FIREFOX_TYPES
 }
 
 module.exports = HeadersHelper;
