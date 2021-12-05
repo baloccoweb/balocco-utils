@@ -50,7 +50,7 @@ const getJson = (filename) => {
 
         return JSON.parse(rawdata);
     } catch (e) {
-        return [];
+        return null;
     }
 }
 
