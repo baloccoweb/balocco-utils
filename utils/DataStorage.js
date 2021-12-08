@@ -1,5 +1,6 @@
 const fs = require('fs');
 const os = require('os');
+const { dirname } = require('path');
 
 const HOME_DIR = os.homedir();
 const DATA_PATH = 'data';
@@ -28,17 +29,30 @@ const startup = (folder) => {
     }
 }
 
-const saveJson = (filename, data) => {
+const saveJson = (filename, data, createDir = false) => {
     return new Promise((resolve, reject) => {
         __checkFolder();
 
-        fs.writeFile(`${getDataFolder()}/${filename}.json`, JSON.stringify(data), (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve();
-            }
-        });
+        const path = `${getDataFolder()}/${filename}.json`;
+        const write = () => {
+            fs.writeFile(path, JSON.stringify(data), (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        }
+
+        if (createDir) {
+            fs.mkdir(dirname(path), { recursive: true }, function (err) {
+                if (err) return reject(err);
+
+                write();
+            });
+        } else {
+            write();
+        }
     });
 }
 
