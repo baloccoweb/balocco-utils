@@ -88,6 +88,20 @@ const getRandom = (arr, n) => {
     return result;
 }
 
+const slice2 = (array, chunk, offset) => {
+    let subarray = [];
+    let ind;
+    for (let i = 0; i < chunk; i++) {
+        ind = (offset + i) % array.length;
+        subarray.push(array[ind]);
+    }
+
+    return {
+        subarray,
+        ind
+    };
+}
+
 module.exports = {
     sanitazeString,
     cleanString,
@@ -102,5 +116,6 @@ module.exports = {
     getAppVersion,
     randomChoice,
     randomIntFromInterval,
-    getRandom
+    getRandom,
+    slice2
 }
