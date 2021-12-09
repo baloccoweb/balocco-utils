@@ -91,9 +91,15 @@ const getRandom = (arr, n) => {
 const slice2 = (array, chunk, offset) => {
     let subarray = [];
     let ind;
-    for (let i = 0; i < chunk; i++) {
-        ind = (offset + i) % array.length;
-        subarray.push(array[ind]);
+
+    if (chunk > array.length) {
+        subarray = [...array];
+        ind = 0;
+    } else {
+        for (let i = 0; i < chunk; i++) {
+            ind = (offset + i) % array.length;
+            subarray.push(array[ind]);
+        }
     }
 
     return {
