@@ -1,4 +1,4 @@
-const { getRandom } = require("../index");
+const { getRandom, BaloccoHttp } = require("../index");
 const HeadersHelper = require("../utils/HeadersHelper");
 
 //console.log(HeadersHelper.getRealFirefox("it"));
@@ -10,3 +10,5 @@ const HeadersHelper = require("../utils/HeadersHelper");
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 console.log(getRandom(arr, 3));
+
+BaloccoHttp.req("https://www.google.it", {});

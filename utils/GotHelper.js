@@ -8,7 +8,7 @@ const GotHelper = {
             headers: HeadersHelper.getRealChrome(locale),
             throwHttpErrors: false,
             http2: !agent || !!agent.http2,
-            timeout,
+            timeout: {request: timeout},
             ...(agent ? { agent } : {})
         };
     },

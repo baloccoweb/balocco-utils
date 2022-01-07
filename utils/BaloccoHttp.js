@@ -16,7 +16,7 @@ const req = async (url, {
     followRedirect = false
 }) => {
     const options = {
-        ...GotHelper.getDefaultOptions(locale, agent),
+        ...GotHelper.getDefaultOptions(locale, agent, timeout),
         method,
         cookieJar,
         responseType,
