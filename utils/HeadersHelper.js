@@ -18,25 +18,21 @@ const CHROME_HEADERS = {
 
 //https://chromereleases.googleblog.com/
 const REAL_CHROME_VERSIONS = [
-    [90, "90.0.4430.93"],
-    [90, "90.0.4430.212"],
-    [91, "91.0.4472.77"],
-    [91, "91.0.4472.114"],
-    [92, "92.0.4515.107"],
-    [92, "92.0.4515.159"],
-    [93, "93.0.4577.63"],
-    [93, "93.0.4577.82"],
-    [94, "94.0.4606.41"],
-    [94, "94.0.4606.61"],
-    [95, "95.0.4636.4"],
-    [95, "95.0.4638.69"],
-    [96, "96.0.4664.110"]
+    [101, "101.0.4951.41"],
+    [99, "99.0.4844.84"],
+    [99, "99.0.4844.82"],
+    [98, "98.0.4758.109"],
+    [98, "98.0.4758.102"],
+    [97, "97.0.4692.99"],
+    [97, "97.0.4692.71"],
+    [96, "96.0.4664.110"],
+    [96, "96.0.4664.93"]
 ];
 
 const OS = [
     'Windows NT 10.0; Win64; x64',
     'X11; Linux x86_64',
-    'Macintosh; Intel Mac OS X 10_14_6',
+    'Macintosh; Intel Mac OS X 12_3_1',
     'Macintosh; Intel Mac OS X 10_15_7'
     //TODO
 ];
@@ -87,15 +83,15 @@ const FIREFOX_TYPES = {
 };
 
 const REAL_FIREFOX_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:94.0) Gecko/20100101 Firefox/94.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 12.1; rv:95.0) Gecko/20100101 Firefox/95.0",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:93.0) Gecko/20100101 Firefox/93.0",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:94.0) Gecko/20100101 Firefox/94.0",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0"
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:97.0) Gecko/20100101 Firefox/97.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:98.0) Gecko/20100101 Firefox/98.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 12.3; rv:99.0) Gecko/20100101 Firefox/99.0",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0"
 ];
 
 const defaultFirefoxXhrLowerHeaders = {
