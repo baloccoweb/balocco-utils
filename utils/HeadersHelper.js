@@ -18,15 +18,15 @@ const CHROME_HEADERS = {
 
 //https://chromereleases.googleblog.com/
 const REAL_CHROME_VERSIONS = [
+    [103, "103.0.5060.66"],
+    [103, "103.0.0.0"],
     [101, "101.0.4951.41"],
     [99, "99.0.4844.84"],
     [99, "99.0.4844.82"],
     [98, "98.0.4758.109"],
     [98, "98.0.4758.102"],
     [97, "97.0.4692.99"],
-    [97, "97.0.4692.71"],
-    [96, "96.0.4664.110"],
-    [96, "96.0.4664.93"]
+    [97, "97.0.4692.71"]
 ];
 
 const OS = [
@@ -83,13 +83,13 @@ const FIREFOX_TYPES = {
 };
 
 const REAL_FIREFOX_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:97.0) Gecko/20100101 Firefox/97.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 12.4; rv:102.0) Gecko/20100101 Firefox/102.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:98.0) Gecko/20100101 Firefox/98.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 12.3; rv:99.0) Gecko/20100101 Firefox/99.0",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0"
 ];
