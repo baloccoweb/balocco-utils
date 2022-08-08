@@ -12,6 +12,10 @@ const cleanString = (str) => {
         .trim();
 }
 
+const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 const getCurrency = (str) => {
     return str.replace(/[\d\., ]/g, '')
         .trim();
@@ -111,6 +115,7 @@ const slice2 = (array, chunk, offset) => {
 module.exports = {
     sanitazeString,
     cleanString,
+    capitalize,
     getCurrency,
     getPriceValue,
     isValidUrl,
