@@ -10,6 +10,7 @@ const LOGS_PATH = 'logs';
 const DEBUG_FILENAME = 'debug';
 const SYSTEM_FILENAME = 'system';
 const PROXY_FILENAME = 'proxy';
+const SPAM_FILENAME = 'spam';
 
 let __today;
 let __folder;
@@ -69,10 +70,16 @@ const logDebug = (string, prefix, sync = false) => {
         __append(DEBUG_FILENAME, string, prefix, sync);
 }
 
-const logPoxy = (string, prefix, sync = false) => {
+const logProxy = (string, prefix, sync = false) => {
     if (!__folder) throw "Run startup first";
 
     __append(PROXY_FILENAME, string, prefix, sync);
+}
+
+const logSpam = (string, prefix, sync = false) => {
+    if (!__folder) throw "Run startup first";
+
+    __append(SPAM_FILENAME, string, prefix, sync);
 }
 
 const Logger = {
@@ -85,8 +92,11 @@ const Logger = {
         log: logDebug
     },
     proxy: {
-        log: logPoxy
-    }
+        log: logProxy
+    },
+    spam: {
+        log: logSpam
+    },
 }
 
 module.exports = Logger;
