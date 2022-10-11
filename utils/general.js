@@ -112,6 +112,12 @@ const slice2 = (array, chunk, offset) => {
     };
 }
 
+const localeToLcidName = (locale) => {
+    if(["en-US", "en-GB"].includes(locale)) return locale;
+
+    return `${locale}-${locale.toUpperCase()}`;
+}
+
 module.exports = {
     sanitazeString,
     cleanString,
@@ -128,5 +134,6 @@ module.exports = {
     randomChoice,
     randomIntFromInterval,
     getRandom,
-    slice2
+    slice2,
+    localeToLcidName
 }
