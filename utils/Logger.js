@@ -15,7 +15,7 @@ const SPAM_FILENAME = 'spam';
 let __today;
 let __folder;
 
-const __getFilePath = (filename) => {
+const getFilePath = (filename) => {
     if (__today) {
         return `${getLogsFolder()}/${filename}_${__today}.log`;
     }
@@ -25,7 +25,7 @@ const __getFilePath = (filename) => {
 
 const __append = (filename, string, prefix, sync = false) => {
     const date = new Date();
-    const filepath = __getFilePath(filename);
+    const filepath = getFilePath(filename);
     const message = `[${date.toISOString()}][${prefix}] ${string}\r\n`;
     if (sync) {
         fs.appendFileSync(filepath, message);
@@ -86,16 +86,20 @@ const Logger = {
     startup,
     getLogsFolder,
     system: {
-        log: logSystem
+        log: logSystem,
+        getFilePath: () => getFilePath(SYSTEM_FILENAME)
     },
     debug: {
-        log: logDebug
+        log: logDebug,
+        getFilePath: () => getFilePath(DEBUG_FILENAME)
     },
     proxy: {
-        log: logProxy
+        log: logProxy,
+        getFilePath: () => getFilePath(PROXY_FILENAME)
     },
     spam: {
-        log: logSpam
+        log: logSpam,
+        getFilePath: () => getFilePath(SPAM_FILENAME)
     },
 }
 

@@ -1,6 +1,7 @@
-const { getRandom, BaloccoHttp } = require("../index");
+const { getRandom, BaloccoHttp, Logger } = require("../index");
 const HeadersHelper = require("../utils/HeadersHelper");
-const {localeToLcidName} = require("../utils/general");
+const { localeToLcidName } = require("../utils/general");
+const pkg = require("../package.json");
 
 //console.log(HeadersHelper.getRealFirefox("it"));
 //console.log(HeadersHelper.getRealFirefox("it", HeadersHelper.FIREFOX_TYPES.NAVIGATE));
@@ -15,3 +16,6 @@ console.log(getRandom(arr, 3));
 BaloccoHttp.req("https://www.google.it", {});
 
 console.log(localeToLcidName("it"), localeToLcidName("de"), localeToLcidName("en-US"));
+
+//Logger.startup(`.${pkg.name}`);
+//console.log(Logger.system.getFilePath());
