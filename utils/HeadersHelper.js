@@ -59,9 +59,13 @@ const randomUA = () => {
 const getRealChrome = (locale) => {
     const newHeaders = { ...CHROME_HEADERS };
 
-    newHeaders["accept-language"] = newHeaders["accept-language"]
-        .replace("${LOCALE_FULL}", locale + "-" + locale.toUpperCase())
-        .replace("${LOCALE}", locale);
+    if(["en-US", "en-GB"].includes(locale)){
+        newHeaders["accept-language"] = `${locale},en;q=0.5`;
+    } else {
+        newHeaders["accept-language"] = newHeaders["accept-language"]
+            .replace("${LOCALE_FULL}", locale + "-" + locale.toUpperCase())
+            .replace("${LOCALE}", locale);
+    }
 
     const { ua, version, platform } = randomUA();
 
@@ -109,7 +113,13 @@ const defaultFirefoxXhrLowerHeaders = {
 
 const getRealFirefox = (locale, type = FIREFOX_TYPES.NAVIGATE) => {
     const userAgent = REAL_FIREFOX_AGENTS[randomIntFromInterval(0, REAL_FIREFOX_AGENTS.length - 1)];
-    const acceptLanguage = `${locale}-${locale.toUpperCase()},${locale};q=0.8,en;q=0.5,en-US;q=0.3`;
+
+    let acceptLanguage;
+    if(["en-US", "en-GB"].includes(locale)){
+        acceptLanguage = `${locale},en;q=0.5`;
+    } else {
+        acceptLanguage = `${locale}-${locale.toUpperCase()},${locale};q=0.8,en;q=0.5,en-US;q=0.3`;
+    }
 
     switch (type) {
         case FIREFOX_TYPES.XHR_GET_HTML:
