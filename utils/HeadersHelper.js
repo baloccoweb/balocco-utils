@@ -18,22 +18,23 @@ const CHROME_HEADERS = {
 
 //https://chromereleases.googleblog.com/
 const REAL_CHROME_VERSIONS = [
-    [106, "107.0.0.0"],
+    [108, "108.0.0.0"],
+    [107, "107.0.0.0"],
     [106, "106.0.0.0"],
     [105, "105.0.0.0"],
     [104, "104.0.0.0"],
     [103, "103.0.5060.66"],
     [103, "103.0.0.0"],
     [101, "101.0.4951.67"],
-    [101, "101.0.4951.41"],
-    [99, "99.0.4844.84"]
+    [101, "101.0.4951.41"]
 ];
 
 const OS = [
     'Windows NT 10.0; Win64; x64',
     'X11; Linux x86_64',
     'Macintosh; Intel Mac OS X 12_6',
-    'Macintosh; Intel Mac OS X 12_3_1'
+    'Macintosh; Intel Mac OS X 12_3_1',
+    'Macintosh; Intel Mac OS X 13_1'
     //TODO
 ];
 
@@ -59,7 +60,7 @@ const randomUA = () => {
 const getRealChrome = (locale) => {
     const newHeaders = { ...CHROME_HEADERS };
 
-    if(["en-US", "en-GB"].includes(locale)){
+    if (["en-US", "en-GB"].includes(locale)) {
         newHeaders["accept-language"] = `${locale},en;q=0.5`;
     } else {
         newHeaders["accept-language"] = newHeaders["accept-language"]
@@ -87,18 +88,18 @@ const FIREFOX_TYPES = {
 };
 
 const REAL_FIREFOX_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.1; rv:108.0) Gecko/20100101 Firefox/108.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.0; rv:107.0) Gecko/20100101 Firefox/107.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.0; rv:106.0) Gecko/20100101 Firefox/106.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 12.6; rv:105.0) Gecko/20100101 Firefox/105.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 12.6; rv:104.0) Gecko/20100101 Firefox/104.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 12.5; rv:103.0) Gecko/20100101 Firefox/103.0",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:107.0) Gecko/20100101 Firefox/107.0",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:106.0) Gecko/20100101 Firefox/106.0",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:105.0) Gecko/20100101 Firefox/105.0",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:103.0) Gecko/20100101 Firefox/103.0"
 ];
 
 const defaultFirefoxXhrLowerHeaders = {
@@ -115,7 +116,7 @@ const getRealFirefox = (locale, type = FIREFOX_TYPES.NAVIGATE) => {
     const userAgent = REAL_FIREFOX_AGENTS[randomIntFromInterval(0, REAL_FIREFOX_AGENTS.length - 1)];
 
     let acceptLanguage;
-    if(["en-US", "en-GB"].includes(locale)){
+    if (["en-US", "en-GB"].includes(locale)) {
         acceptLanguage = `${locale},en;q=0.5`;
     } else {
         acceptLanguage = `${locale}-${locale.toUpperCase()},${locale};q=0.8,en;q=0.5,en-US;q=0.3`;
