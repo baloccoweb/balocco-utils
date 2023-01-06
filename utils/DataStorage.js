@@ -68,7 +68,7 @@ const getJson = (filename) => {
     }
 }
 
-const mkdir = async (folder) => {
+const mkdir = (folder) => {
     return new Promise((resolve, reject) => {
         fs.mkdir(`${getDataFolder()}/${folder}`, {
             recursive: true
@@ -82,7 +82,7 @@ const mkdir = async (folder) => {
     });
 }
 
-const rm = async (folder) => {
+const rm = (folder) => {
     return new Promise((resolve, reject) => {
         fs.rm(`${getDataFolder()}/${folder}`, {
             recursive: true,
@@ -97,7 +97,7 @@ const rm = async (folder) => {
     });
 }
 
-const rmJson = async (filname) => {
+const rmJson = (filname) => {
     return new Promise((resolve, reject) => {
         fs.rm(`${getDataFolder()}/${filname}.json`, {
             recursive: false,
