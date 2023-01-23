@@ -13,7 +13,11 @@ const pkg = require("../package.json");
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 console.log(getRandom(arr, 3));
 
-BaloccoHttp.req("https://www.google.it", {});
+BaloccoHttp.req("https://www.google.it", {
+    http2: false
+}).then((response) => {
+    console.log("google", response.statusCode);
+});
 
 console.log(localeToLcidName("it"), localeToLcidName("de"), localeToLcidName("en-US"));
 

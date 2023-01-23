@@ -13,10 +13,11 @@ const req = async (url, {
     body = undefined,
     timeout = 5000,
     retry = undefined,
-    followRedirect = false
+    followRedirect = false,
+    http2 = true
 }) => {
     const options = {
-        ...GotHelper.getDefaultOptions(locale, agent, timeout),
+        ...GotHelper.getDefaultOptions(locale, agent, timeout, http2),
         method,
         cookieJar,
         responseType,

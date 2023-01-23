@@ -3,11 +3,11 @@ const HttpsProxyAgent = require("https-proxy-agent");
 const { SocksProxyAgent } = require("socks-proxy-agent");
 
 const GotHelper = {
-    getDefaultOptions: (locale, agent, timeout = 5000) => {
+    getDefaultOptions: (locale, agent, timeout = 5000, http2 = true) => {
         return {
             headers: HeadersHelper.getRealChrome(locale),
             throwHttpErrors: false,
-            http2: !agent || !!agent.http2,
+            http2: http2 && (!agent || !!agent.http2),
             timeout: { request: timeout },
             ...(agent ? { agent } : {})
         };
