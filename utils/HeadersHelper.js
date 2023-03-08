@@ -18,20 +18,21 @@ const CHROME_HEADERS = {
 
 //https://chromereleases.googleblog.com/
 const REAL_CHROME_VERSIONS = [
+    [111, "111.0.0.0"],
+    [110, "110.0.0.0"],
+    [109, "109.0.0.0"],
     [108, "108.0.0.0"],
     [107, "107.0.0.0"],
     [106, "106.0.0.0"],
     [105, "105.0.0.0"],
     [104, "104.0.0.0"],
-    [103, "103.0.5060.66"],
     [103, "103.0.0.0"],
-    [101, "101.0.4951.67"],
-    [101, "101.0.4951.41"]
 ];
 
 const OS = [
     'Windows NT 10.0; Win64; x64',
     'X11; Linux x86_64',
+    'Macintosh; Intel Mac OS X 13_2_1',
     'Macintosh; Intel Mac OS X 12_6',
     'Macintosh; Intel Mac OS X 12_3_1',
     'Macintosh; Intel Mac OS X 13_1'
@@ -88,18 +89,21 @@ const FIREFOX_TYPES = {
 };
 
 const REAL_FIREFOX_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:110.0) Gecko/20100101 Firefox/110.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.2; rv:110.0) Gecko/20100101 Firefox/110.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.1; rv:109.0) Gecko/20100101 Firefox/109.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.1; rv:108.0) Gecko/20100101 Firefox/108.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.0; rv:107.0) Gecko/20100101 Firefox/107.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.0; rv:106.0) Gecko/20100101 Firefox/106.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 12.6; rv:105.0) Gecko/20100101 Firefox/105.0",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:110.0) Gecko/20100101 Firefox/110.0",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:107.0) Gecko/20100101 Firefox/107.0",
     "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:106.0) Gecko/20100101 Firefox/106.0",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:105.0) Gecko/20100101 Firefox/105.0",
 ];
 
 const defaultFirefoxXhrLowerHeaders = {
