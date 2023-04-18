@@ -3,7 +3,7 @@ const HeadersHelper = require("../utils/HeadersHelper");
 const { localeToLcidName } = require("../utils/general");
 const pkg = require("../package.json");
 
-//console.log(HeadersHelper.getRealFirefox("it"));
+//console.log(HeadersHelper.getRealFirefox("it"), HeadersHelper.randomFirefoxUA());
 //console.log(HeadersHelper.getRealFirefox("it", HeadersHelper.FIREFOX_TYPES.NAVIGATE));
 //console.log(HeadersHelper.getRealFirefox("it", HeadersHelper.FIREFOX_TYPES.NAVIGATE_CROSS));
 //console.log(HeadersHelper.getRealFirefox("it", HeadersHelper.FIREFOX_TYPES.XHR_GET_HTML));

@@ -40,7 +40,7 @@ const OS = [
     //TODO
 ];
 
-const randomUA = () => {
+const randomChromeUA = () => {
     const chomeVersion = REAL_CHROME_VERSIONS[randomIntFromInterval(0, REAL_CHROME_VERSIONS.length - 1)];
     const osVersion = OS[randomIntFromInterval(0, OS.length - 1)];
 
@@ -70,7 +70,7 @@ const getRealChrome = (locale) => {
             .replace("${LOCALE}", locale);
     }
 
-    const { ua, version, platform } = randomUA();
+    const { ua, version, platform } = randomChromeUA();
 
     newHeaders["sec-ch-ua"] = newHeaders["sec-ch-ua"]
         .replaceAll("${CHROME_VERSION}", version);
@@ -123,8 +123,12 @@ const defaultFirefoxXhrLowerHeaders = {
     'TE': 'trailers',
 };
 
+const randomFirefoxUA = () => {
+    return REAL_FIREFOX_AGENTS[randomIntFromInterval(0, REAL_FIREFOX_AGENTS.length - 1)];
+}
+
 const getRealFirefox = (locale, type = FIREFOX_TYPES.NAVIGATE) => {
-    const userAgent = REAL_FIREFOX_AGENTS[randomIntFromInterval(0, REAL_FIREFOX_AGENTS.length - 1)];
+    const userAgent = randomFirefoxUA();
 
     let acceptLanguage;
     if (["en-US", "en-GB"].includes(locale)) {
@@ -172,7 +176,8 @@ const getRealFirefox = (locale, type = FIREFOX_TYPES.NAVIGATE) => {
 const HeadersHelper = {
     getRealChrome,
     getRealFirefox,
-    randomUA,
+    randomChromeUA,
+    randomFirefoxUA,
     FIREFOX_TYPES
 }
 
