@@ -127,15 +127,17 @@ const randomFirefoxUA = () => {
     return REAL_FIREFOX_AGENTS[randomIntFromInterval(0, REAL_FIREFOX_AGENTS.length - 1)];
 }
 
+const getAcceptLanguage = (locale = "it") => {
+    if (["en-US", "en-GB"].includes(locale)) {
+        return `${locale},en;q=0.5`;
+    }
+
+    return `${locale}-${locale.toUpperCase()},${locale};q=0.8,en;q=0.5,en-US;q=0.3`;
+}
+
 const getRealFirefox = (locale, type = FIREFOX_TYPES.NAVIGATE) => {
     const userAgent = randomFirefoxUA();
-
-    let acceptLanguage;
-    if (["en-US", "en-GB"].includes(locale)) {
-        acceptLanguage = `${locale},en;q=0.5`;
-    } else {
-        acceptLanguage = `${locale}-${locale.toUpperCase()},${locale};q=0.8,en;q=0.5,en-US;q=0.3`;
-    }
+    const acceptLanguage = getAcceptLanguage(locale);
 
     switch (type) {
         case FIREFOX_TYPES.XHR_GET_HTML:
@@ -178,6 +180,7 @@ const HeadersHelper = {
     getRealFirefox,
     randomChromeUA,
     randomFirefoxUA,
+    getAcceptLanguage,
     FIREFOX_TYPES
 }
 
