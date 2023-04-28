@@ -132,7 +132,7 @@ const getAcceptLanguage = (locale = "it") => {
         return `${locale},en;q=0.5`;
     }
 
-    return `${locale}-${locale.toUpperCase()},${locale};q=0.8,en;q=0.5,en-US;q=0.3`;
+    return `${locale}-${locale.toUpperCase()},${locale};q=0.8,en-US;q=0.5,en;q=0.3`;
 }
 
 const getRealFirefox = (locale, type = FIREFOX_TYPES.NAVIGATE) => {
