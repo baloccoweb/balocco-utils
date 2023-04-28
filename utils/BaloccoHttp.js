@@ -1,4 +1,4 @@
-const { got } = require('got-cjs');
+const { gotScraping, got } = require('got-scraping');
 const GotHelper = require('./GotHelper');
 
 const req = async (url, {
@@ -14,7 +14,9 @@ const req = async (url, {
     timeout = 5000,
     retry = undefined,
     followRedirect = false,
-    http2 = true
+    http2 = true,
+    mode = "got",
+    headerGeneratorOptions = undefined
 }) => {
     const options = {
         ...GotHelper.getDefaultOptions(locale, agent, timeout, http2),
@@ -32,7 +34,18 @@ const req = async (url, {
         options.retry = { limit: retry };
     }
 
-    const request = got(url, options);
+    let request;
+    switch (mode) {
+        case "got":
+            request = got(url, options);
+            break;
+        case "got-scraping":
+            options.headerGeneratorOptions = headerGeneratorOptions;
+            request = gotScraping(url, options);
+            break;
+        default:
+            throw new Error(`Undefined req mode ${mode}`);
+    }
 
     if (agent) {
         const timeoutInst = setTimeout(() => request.cancel(), timeout);

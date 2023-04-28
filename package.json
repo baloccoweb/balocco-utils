@@ -1,6 +1,6 @@
 {
   "name": "balocco-utils",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "Balocco utilities",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/baloccobot/balocco-utils#readme",
   "dependencies": {
     "config": "^3.3.9",
-    "got-cjs": "12.5.4",
+    "got-scraping": "^3.2.13",
     "https-proxy-agent": "^5.0.1",
     "socks-proxy-agent": "^7.0.0"
   }
