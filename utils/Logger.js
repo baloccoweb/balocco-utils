@@ -11,6 +11,7 @@ const DEBUG_FILENAME = 'debug';
 const SYSTEM_FILENAME = 'system';
 const PROXY_FILENAME = 'proxy';
 const SPAM_FILENAME = 'spam';
+const NODES_FILENAME = 'nodes';
 
 let __today;
 let __folder;
@@ -82,6 +83,12 @@ const logSpam = (string, prefix, sync = false) => {
     __append(SPAM_FILENAME, string, prefix, sync);
 }
 
+const logNodes = (string, prefix, sync = false) => {
+    if (!__folder) throw "Run startup first";
+
+    __append(NODES_FILENAME, string, prefix, sync);
+}
+
 const Logger = {
     startup,
     getLogsFolder,
@@ -100,6 +107,10 @@ const Logger = {
     spam: {
         log: logSpam,
         getFilePath: () => getFilePath(SPAM_FILENAME)
+    },
+    nodes: {
+        log: logNodes,
+        getFilePath: () => getFilePath(NODES_FILENAME)
     },
 }
 
