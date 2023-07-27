@@ -12,6 +12,7 @@ const SYSTEM_FILENAME = 'system';
 const PROXY_FILENAME = 'proxy';
 const SPAM_FILENAME = 'spam';
 const NODES_FILENAME = 'nodes';
+const FARMING_FILENAME = 'farming';
 
 let __today;
 let __folder;
@@ -89,6 +90,12 @@ const logNodes = (string, prefix, sync = false) => {
     __append(NODES_FILENAME, string, prefix, sync);
 }
 
+const logFarming = (string, prefix, sync = false) => {
+    if (!__folder) throw "Run startup first";
+
+    __append(NODES_FILENAME, string, prefix, sync);
+}
+
 const Logger = {
     startup,
     getLogsFolder,
@@ -111,6 +118,10 @@ const Logger = {
     nodes: {
         log: logNodes,
         getFilePath: () => getFilePath(NODES_FILENAME)
+    },
+    farming: {
+        log: logFarming,
+        getFilePath: () => getFilePath(FARMING_FILENAME)
     },
 }
 
