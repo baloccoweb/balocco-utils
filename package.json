@@ -1,6 +1,6 @@
 {
   "name": "balocco-utils",
-  "version": "1.0.33",
+  "version": "1.0.34",
   "description": "Balocco utilities",
   "main": "index.js",
   "scripts": {
