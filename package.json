@@ -22,7 +22,7 @@
   "homepage": "https://github.com/baloccobot/balocco-utils#readme",
   "dependencies": {
     "config": "^3.3.9",
-    "got-scraping": "^3.2.13",
+    "got-scraping": "^3.2.15",
     "https-proxy-agent": "^5.0.1",
     "socks-proxy-agent": "^7.0.0"
   }
