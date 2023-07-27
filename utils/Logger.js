@@ -13,6 +13,7 @@ const PROXY_FILENAME = 'proxy';
 const SPAM_FILENAME = 'spam';
 const NODES_FILENAME = 'nodes';
 const FARMING_FILENAME = 'farming';
+const BHTTP_FILENAME = 'bhttp';
 
 let __today;
 let __folder;
@@ -93,7 +94,13 @@ const logNodes = (string, prefix, sync = false) => {
 const logFarming = (string, prefix, sync = false) => {
     if (!__folder) throw "Run startup first";
 
-    __append(NODES_FILENAME, string, prefix, sync);
+    __append(FARMING_FILENAME, string, prefix, sync);
+}
+
+const logBHttp = (string, prefix, sync = false) => {
+    if (!__folder) throw "Run startup first";
+
+    __append(BHTTP_FILENAME, string, prefix, sync);
 }
 
 const Logger = {
@@ -122,6 +129,10 @@ const Logger = {
     farming: {
         log: logFarming,
         getFilePath: () => getFilePath(FARMING_FILENAME)
+    },
+    bhttp: {
+        log: logBHttp,
+        getFilePath: () => getFilePath(BHTTP_FILENAME)
     },
 }
 
