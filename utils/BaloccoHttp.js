@@ -16,7 +16,8 @@ const req = async (url, {
     followRedirect = false,
     http2 = true,
     mode = "got",
-    headerGeneratorOptions = undefined
+    headerGeneratorOptions = undefined,
+    sessionToken = undefined
 }) => {
     const options = {
         ...GotHelper.getDefaultOptions(locale, agent, timeout, http2),
@@ -41,6 +42,7 @@ const req = async (url, {
             break;
         case "got-scraping":
             options.headerGeneratorOptions = headerGeneratorOptions;
+            options.sessionToken = sessionToken;
             request = gotScraping(url, options);
             break;
         default:
