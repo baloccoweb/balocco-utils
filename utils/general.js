@@ -99,6 +99,11 @@ const slice2 = (array, chunk, offset) => {
     if (chunk > array.length) {
         subarray = [...array];
         ind = 0;
+    } else if (chunk === 1) {
+        ind = offset + chunk;
+        if (ind >= array.length) ind = 0;
+
+        subarray = array.slice(offset, ind);
     } else {
         for (let i = 0; i < chunk; i++) {
             ind = (offset + i) % array.length;
@@ -113,7 +118,7 @@ const slice2 = (array, chunk, offset) => {
 }
 
 const localeToLcidName = (locale) => {
-    if(["en-US", "en-GB"].includes(locale)) return locale;
+    if (["en-US", "en-GB"].includes(locale)) return locale;
 
     return `${locale}-${locale.toUpperCase()}`;
 }
