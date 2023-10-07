@@ -5,6 +5,7 @@ const DataStorage = require('./utils/DataStorage');
 const AppStorage = require('./utils/AppStorage');
 const ConfigHelper = require('./utils/ConfigHelper');
 const BaloccoHttp = require('./utils/BaloccoHttp');
+const BaloccoFetch = require('./utils/BaloccoFetch');
 const GotHelper = require('./utils/GotHelper');
 const Logger = require('./utils/Logger');
 
@@ -17,6 +18,7 @@ const BaloccoUtils = {
     Logger,
     HeadersHelper,
     BaloccoHttp,
+    BaloccoFetch,
     GotHelper
 };
 

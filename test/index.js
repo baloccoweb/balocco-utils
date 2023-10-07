@@ -1,4 +1,4 @@
-const { getRandom, BaloccoHttp, Logger } = require("../index");
+const { getRandom, BaloccoHttp, Logger, BaloccoFetch } = require("../index");
 const HeadersHelper = require("../utils/HeadersHelper");
 const { localeToLcidName } = require("../utils/general");
 const pkg = require("../package.json");
@@ -19,3 +19,5 @@ console.log(localeToLcidName("it"), localeToLcidName("de"), localeToLcidName("en
 
 //Logger.startup(`.${pkg.name}`);
 //console.log(Logger.system.getFilePath());
+
+console.log(BaloccoFetch.req("https://www.google.it").then((response) => console.log(response.status)).catch(e => console.error(e)));
