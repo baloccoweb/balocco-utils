@@ -1,5 +1,5 @@
-const { socksDispatcher } = require('fetch-socks');
-const { fetch, ProxyAgent, Agent } = require('undici');
+import { socksDispatcher } from 'fetch-socks';
+import { fetch, ProxyAgent, Agent } from 'undici';
 
 const getAgent = (timeout, proxy = null) => {
     if (proxy) {
@@ -27,9 +27,9 @@ const getAgent = (timeout, proxy = null) => {
     }
 
     return new Agent({
-        headersTimeout,
-        connectTimeout,
-        bodyTimeout
+        headersTimeout: timeout,
+        connectTimeout: timeout,
+        bodyTimeout: timeout
     });
 }
 
@@ -51,8 +51,6 @@ const req = async (url, {
     });
 }
 
-const BaloccoFetch = {
+export const BaloccoFetch = {
     req
 };
-
-module.exports = BaloccoFetch;

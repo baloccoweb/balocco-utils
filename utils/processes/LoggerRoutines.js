@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const FILES_WHITELIST = [
     ".gitignore"
@@ -70,4 +70,4 @@ const LoggerRoutines = {
     execute
 }
 
-module.exports = LoggerRoutines;
+export default LoggerRoutines;

@@ -1,8 +1,9 @@
 {
   "name": "balocco-utils",
-  "version": "1.0.38",
+  "version": "1.1.0",
   "description": "Balocco utilities",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "node test/index.js"
   },
@@ -23,9 +24,9 @@
   "dependencies": {
     "config": "^3.3.9",
     "fetch-socks": "^1.2.0",
-    "got-scraping": "^3.2.15",
+    "got-scraping": "^4.0.1",
     "https-proxy-agent": "^5.0.1",
     "socks-proxy-agent": "^7.0.0",
-    "undici": "^5.25.4"
+    "undici": "^5.27.2"
   }
 }

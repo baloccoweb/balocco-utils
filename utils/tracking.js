@@ -1,7 +1,7 @@
-const generalUtils = require("./general");
+import {isValidUrl} from "./general.js";
 
-const getAmazonUrlInfo = (search) => {
-    const url = generalUtils.isValidUrl(search);
+export const getAmazonUrlInfo = (search) => {
+    const url = isValidUrl(search);
     if (url) {
         return {
             origin: url.origin,
@@ -12,8 +12,8 @@ const getAmazonUrlInfo = (search) => {
     }
 }
 
-const getUnieuroUrlInfo = (search) => {
-    const url = generalUtils.isValidUrl(search);
+export const getUnieuroUrlInfo = (search) => {
+    const url = isValidUrl(search);
     if (url) {
         return {
             origin: url.origin,
@@ -24,8 +24,8 @@ const getUnieuroUrlInfo = (search) => {
     }
 }
 
-const getMediaworldUrlInfo = (search) => {
-    const url = generalUtils.isValidUrl(search);
+export const getMediaworldUrlInfo = (search) => {
+    const url = isValidUrl(search);
     if (url) {
         const splittedPathname = url.pathname.split('/');
         const partNumber = splittedPathname.find((part) => part.startsWith("p-"));
@@ -39,8 +39,8 @@ const getMediaworldUrlInfo = (search) => {
     }
 }
 
-const getNexthsUrlInfo = (search) => {
-    const url = generalUtils.isValidUrl(search);
+export const getNexthsUrlInfo = (search) => {
+    const url = isValidUrl(search);
     if (url) {
         return {
             origin: url.origin,
@@ -49,11 +49,4 @@ const getNexthsUrlInfo = (search) => {
     } else {
         throw "Invalid url";
     }
-}
-
-module.exports = {
-    getAmazonUrlInfo,
-    getUnieuroUrlInfo,
-    getMediaworldUrlInfo,
-    getNexthsUrlInfo
 };

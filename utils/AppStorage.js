@@ -1,6 +1,6 @@
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
 
 const HOME_DIR = os.homedir();
 const APP_PATH = 'app';
@@ -52,11 +52,9 @@ const getContent = (filepath) => {
     }
 }
 
-const AppStorage = {
+export const AppStorage = {
     getAppFolder,
     startup,
     writeContent,
     getContent
-}
-
-module.exports = AppStorage;
+};

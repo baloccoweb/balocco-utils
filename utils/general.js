@@ -1,27 +1,27 @@
-const crypto = require("crypto");
-const ConfigHelper = require("./ConfigHelper");
+import crypto from "crypto";
+import { ConfigHelper } from "./ConfigHelper.js";
 
-const sanitazeString = (str) => {
+export const sanitazeString = (str) => {
     return str.replace(/[^0-9a-z]/gi, '')
         .trim()
         .toUpperCase();
 }
 
-const cleanString = (str) => {
+export const cleanString = (str) => {
     return str.replace(/(\r\n|\n|\r)/gm, '')
         .trim();
 }
 
-const capitalize = (str) => {
+export const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-const getCurrency = (str) => {
+export const getCurrency = (str) => {
     return str.replace(/[\d\., ]/g, '')
         .trim();
 }
 
-const getPriceValue = (str) => {
+export const getPriceValue = (str) => {
     let value = Number(sanitazeString((str))) / 100;
 
     if (isNaN(value)) {
@@ -31,7 +31,7 @@ const getPriceValue = (str) => {
     return value;
 }
 
-const isValidUrl = (url) => {
+export const isValidUrl = (url) => {
     try {
         return (new URL(url));
     } catch (err) {
@@ -39,20 +39,20 @@ const isValidUrl = (url) => {
     }
 }
 
-const priceToNumber = (str) => {
+export const priceToNumber = (str) => {
     const cleanStr = cleanString(str);
     return Number(cleanStr.replace(/[^0-9.-]+/g, "")) / 100;
 };
 
-const generateId = () => {
+export const generateId = () => {
     return crypto.randomBytes(16).toString("hex");
 }
 
-const sleep = (ms) => {
+export const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const stringIncludesAllWords = (str, words = []) => {
+export const stringIncludesAllWords = (str, words = []) => {
     let allWordsIncluded = true;
 
     words.forEach((word) => {
@@ -62,23 +62,23 @@ const stringIncludesAllWords = (str, words = []) => {
     return allWordsIncluded;
 }
 
-const getLocale = () => {
+export const getLocale = () => {
     return ConfigHelper.get("locale") ? ConfigHelper.get("locale") : "it-IT";
 }
 
-const getAppVersion = () => {
+export const getAppVersion = () => {
     return process.env.npm_package_version;
 }
 
-const randomChoice = (choice1, choice2) => {
+export const randomChoice = (choice1, choice2) => {
     return (Math.round(Math.random()) ? choice1 : choice2);
 }
 
-const randomIntFromInterval = (min, max) => { // min and max included 
+export const randomIntFromInterval = (min, max) => { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const getRandom = (arr, n) => {
+export const getRandom = (arr, n) => {
     let result = new Array(n),
         len = arr.length,
         taken = new Array(len);
@@ -92,7 +92,7 @@ const getRandom = (arr, n) => {
     return result;
 }
 
-const slice2 = (array, chunk, offset) => {
+export const slice2 = (array, chunk, offset) => {
     let subarray = [];
     let ind;
 
@@ -117,28 +117,8 @@ const slice2 = (array, chunk, offset) => {
     };
 }
 
-const localeToLcidName = (locale) => {
+export const localeToLcidName = (locale) => {
     if (["en-US", "en-GB"].includes(locale)) return locale;
 
     return `${locale}-${locale.toUpperCase()}`;
-}
-
-module.exports = {
-    sanitazeString,
-    cleanString,
-    capitalize,
-    getCurrency,
-    getPriceValue,
-    isValidUrl,
-    priceToNumber,
-    generateId,
-    sleep,
-    stringIncludesAllWords,
-    getLocale,
-    getAppVersion,
-    randomChoice,
-    randomIntFromInterval,
-    getRandom,
-    slice2,
-    localeToLcidName
 }

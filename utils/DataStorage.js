@@ -1,6 +1,6 @@
-const fs = require('fs');
-const os = require('os');
-const { dirname } = require('path');
+import fs from 'fs';
+import os from 'os';
+import { dirname } from 'path';
 
 const HOME_DIR = os.homedir();
 const DATA_PATH = 'data';
@@ -112,7 +112,7 @@ const rmJson = (filname) => {
     });
 }
 
-const DataStorage = {
+export const DataStorage = {
     getDataFolder,
     startup,
     saveJson,
@@ -120,6 +120,4 @@ const DataStorage = {
     mkdir,
     rm,
     rmJson
-}
-
-module.exports = DataStorage;
+};

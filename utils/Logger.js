@@ -1,8 +1,8 @@
-const fs = require('fs');
-const os = require('os');
+import fs from 'fs';
+import os from 'os';
 
-const ConfigHelper = require('./ConfigHelper');
-const LoggerRoutines = require('./processes/LoggerRoutines');
+import { ConfigHelper } from './ConfigHelper.js';
+import LoggerRoutines from './processes/LoggerRoutines.js';
 
 const HOME_DIR = os.homedir();
 
@@ -103,7 +103,7 @@ const logBHttp = (string, prefix, sync = false) => {
     __append(BHTTP_FILENAME, string, prefix, sync);
 }
 
-const Logger = {
+export const Logger = {
     startup,
     getLogsFolder,
     system: {
@@ -135,5 +135,3 @@ const Logger = {
         getFilePath: () => getFilePath(BHTTP_FILENAME)
     },
 }
-
-module.exports = Logger;

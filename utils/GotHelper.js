@@ -1,8 +1,8 @@
-const HeadersHelper = require("./HeadersHelper");
-const HttpsProxyAgent = require("https-proxy-agent");
-const { SocksProxyAgent } = require("socks-proxy-agent");
+import { HeadersHelper } from "./HeadersHelper.js";
+import HttpsProxyAgent from "https-proxy-agent";
+import { SocksProxyAgent } from "socks-proxy-agent";
 
-const GotHelper = {
+export const GotHelper = {
     getDefaultOptions: (locale, agent, timeout = 5000, http2 = true) => {
         return {
             headers: HeadersHelper.getRealChrome(locale),
@@ -27,6 +27,4 @@ const GotHelper = {
 
         throw `Unhandled agent ${address}`;
     }
-}
-
-module.exports = GotHelper;
+};

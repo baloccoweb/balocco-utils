@@ -1,4 +1,4 @@
-const { randomIntFromInterval } = require("./general");
+import { randomIntFromInterval } from "./general.js";
 
 const CHROME_HEADERS = {
     'pragma': 'no-cache',
@@ -175,13 +175,11 @@ const getRealFirefox = (locale, type = FIREFOX_TYPES.NAVIGATE) => {
     }
 }
 
-const HeadersHelper = {
+export const HeadersHelper = {
     getRealChrome,
     getRealFirefox,
     randomChromeUA,
     randomFirefoxUA,
     getAcceptLanguage,
     FIREFOX_TYPES
-}
-
-module.exports = HeadersHelper;
+};

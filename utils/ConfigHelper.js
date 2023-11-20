@@ -1,6 +1,6 @@
-const config = require('config');
+import config from 'config';
 
-const ConfigHelper = new (class {
+export const ConfigHelper = new (class {
     constructor() {
         this._overrides = {};
     }
@@ -27,5 +27,3 @@ const ConfigHelper = new (class {
         return this.get("enviroment") === "production";
     }
 })();
-
-module.exports = ConfigHelper;

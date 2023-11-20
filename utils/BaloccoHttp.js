@@ -1,5 +1,5 @@
-const { gotScraping, got } = require('got-scraping');
-const GotHelper = require('./GotHelper');
+import { gotScraping, got } from 'got-scraping';
+import { GotHelper } from './GotHelper.js';
 
 const req = async (url, {
     method = "GET",
@@ -61,8 +61,6 @@ const req = async (url, {
     }
 }
 
-const BaloccoHttp = {
+export const BaloccoHttp = {
     req
 };
-
-module.exports = BaloccoHttp;

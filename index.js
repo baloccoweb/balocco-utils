@@ -1,15 +1,16 @@
-const generalUtils = require("./utils/general");
-const trackingUtils = require("./utils/tracking");
-const HeadersHelper = require("./utils/HeadersHelper");
-const DataStorage = require('./utils/DataStorage');
-const AppStorage = require('./utils/AppStorage');
-const ConfigHelper = require('./utils/ConfigHelper');
-const BaloccoHttp = require('./utils/BaloccoHttp');
-const BaloccoFetch = require('./utils/BaloccoFetch');
-const GotHelper = require('./utils/GotHelper');
-const Logger = require('./utils/Logger');
+export * from "./utils/general.js";
+export * from "./utils/tracking.js";
+export * from "./utils/HeadersHelper.js";
+export * from './utils/DataStorage.js';
+export * from './utils/AppStorage.js';
+export * from './utils/ConfigHelper.js';
+export * from './utils/BaloccoHttp.js';
+export * from './utils/BaloccoFetch.js';
+export * from './utils/GotHelper.js';
+export * from './utils/Logger.js';
 
-const BaloccoUtils = {
+
+/*const BaloccoUtils = {
     ...generalUtils,
     ...trackingUtils,
     DataStorage,
@@ -22,4 +23,6 @@ const BaloccoUtils = {
     GotHelper
 };
 
-module.exports = BaloccoUtils;
+export default BaloccoUtils;
+export * from './utils/BaloccoFetch.js';
+export * from './utils/BaloccoHttp.js';*/
