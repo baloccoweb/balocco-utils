@@ -1,5 +1,5 @@
 const HeadersHelper = require("./HeadersHelper");
-const HttpsProxyAgent = require("https-proxy-agent");
+const { HttpsProxyAgent } = require("https-proxy-agent");
 const { SocksProxyAgent } = require("socks-proxy-agent");
 
 const GotHelper = {

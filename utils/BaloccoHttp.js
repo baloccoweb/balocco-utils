@@ -1,5 +1,13 @@
-const { gotScraping, got } = require('got-scraping');
 const GotHelper = require('./GotHelper');
+
+let gotScraping, got;
+
+const init = async () => {
+    const library = await import('got-scraping');
+
+    gotScraping = library.gotScraping;
+    got = library.got;
+}
 
 const req = async (url, {
     method = "GET",
@@ -62,6 +70,7 @@ const req = async (url, {
 }
 
 const BaloccoHttp = {
+    init,
     req
 };
 

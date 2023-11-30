@@ -27,9 +27,9 @@ const getAgent = (timeout, proxy = null) => {
     }
 
     return new Agent({
-        headersTimeout,
-        connectTimeout,
-        bodyTimeout
+        headersTimeout: timeout,
+        connectTimeout: timeout,
+        bodyTimeout: timeout
     });
 }
 

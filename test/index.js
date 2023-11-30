@@ -1,4 +1,4 @@
-const { getRandom, BaloccoHttp, Logger, BaloccoFetch } = require("../index");
+const { getRandom, BaloccoHttp, Logger, BaloccoFetch, GotHelper } = require("../index");
 const HeadersHelper = require("../utils/HeadersHelper");
 const { localeToLcidName } = require("../utils/general");
 const pkg = require("../package.json");
@@ -13,11 +13,14 @@ const pkg = require("../package.json");
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 console.log(getRandom(arr, 3));
 
-BaloccoHttp.req("https://www.google.it", { mode: "got-scraping" }).then((response) => console.log(response.statusCode));
+BaloccoHttp.init()
+    .then(() => {
+        BaloccoHttp.req("https://api.ipify.org?format=json", { mode: "got-scraping" }).then((response) => console.log(response.statusCode, response.body));
+        BaloccoFetch.req("https://api.ipify.org?format=json").then((response) => response.json()).then((response) => console.log(response)).catch(e => console.error(e));
+    }).catch(e => console.log(e));
 
 console.log(localeToLcidName("it"), localeToLcidName("de"), localeToLcidName("en-US"));
 
 //Logger.startup(`.${pkg.name}`);
 //console.log(Logger.system.getFilePath());
 
-console.log(BaloccoFetch.req("https://www.google.it").then((response) => console.log(response.status)).catch(e => console.error(e)));
