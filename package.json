@@ -4,7 +4,7 @@
   "description": "Balocco utilities",
   "main": "index.js",
   "scripts": {
-    "test": "node test/index.js"
+    "test": "node --trace-event-categories http test/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +23,11 @@
   "dependencies": {
     "config": "^3.3.11",
     "fetch-socks": "^1.2.0",
-    "got-scraping": "^4.0.3",
+    "fingerprint-generator": "^2.1.50",
+    "got-scraping": "^4.0.5",
+    "header-generator": "^2.1.50",
     "https-proxy-agent": "^7.0.2",
     "socks-proxy-agent": "^8.0.2",
-    "undici": "^6.6.0"
+    "undici": "^6.6.2"
   }
 }
